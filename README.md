@@ -34,8 +34,11 @@ eg:``http://localhost:8088/AskLeaveServer/user/isExistUserName?name=sunquan``
 		System.out.println(ss);
 	}
 ```
-
-
+* 客户端按照下面的方法处理服务器端响应数据
+```Java
+    Response  resp =JSONObject.parseObject(ss,Response.class);
+    User user=JSONObject.toJavaObject((JSONObject)resp.getObject(),User.class);
+```
 
 #Author 
  Quan Sun,Qidong Tan
