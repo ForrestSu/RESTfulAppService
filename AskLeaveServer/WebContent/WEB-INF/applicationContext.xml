@@ -12,27 +12,36 @@ http://cxf.apache.org/jaxrs
 http://cxf.apache.org/schemas/jaxrs.xsd">
 
 
-
+    <bean id="fjson" class="com.alibaba.fastjson.FastJsonProvider" />
+    
 	<bean id="user" class="com.computer.service.UserServiceImpl" />
 	<jaxrs:server address="/user">
 		<jaxrs:serviceBeans>
 			<ref bean="user"></ref>
 		</jaxrs:serviceBeans>
 		<jaxrs:providers>
-			<bean class="com.alibaba.fastjson.FastJsonProvider" />
+			<ref bean="fjson" />
 		</jaxrs:providers>
 	</jaxrs:server>
-
+<!--  状态设置暂时不用
 	<bean id="state" class="com.computer.service.AStateServiceImpl" />
 	<jaxrs:server address="/state">
 		<jaxrs:serviceBeans>
 			<ref bean="state"></ref>
 		</jaxrs:serviceBeans>
 		<jaxrs:providers>
-			<bean class="com.alibaba.fastjson.FastJsonProvider">
-			</bean>
+			<ref bean="fjson" />
 		</jaxrs:providers>
-
+	</jaxrs:server>
+-->	
+	<bean id="absence" class="com.computer.service.AbsenceServiceImpl" />
+	<jaxrs:server address="/absence">
+		<jaxrs:serviceBeans>
+			<ref bean="absence"></ref>
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<ref bean="fjson" />
+		</jaxrs:providers>
 	</jaxrs:server>
 
 </beans>

@@ -18,7 +18,6 @@ import com.sun.xml.internal.txw2.annotation.XmlElement;
  * id  userName  password userType stunumber tel sex reserve
  */
 @FastJsonType
-@XmlElement
 public class User {
 	
 	@Id(auto=true)
@@ -30,6 +29,7 @@ public class User {
 	/**
 	 *用户类型 l  0 stu  1 teacher
 	 */
+	
 	private Integer userType;
 	/**
 	 * 学号
@@ -111,6 +111,6 @@ public class User {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return super.toString();
+		return userName+password;
 	}
 }

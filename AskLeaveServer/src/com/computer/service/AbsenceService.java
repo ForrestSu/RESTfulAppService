@@ -3,51 +3,53 @@ package com.computer.service;
 import java.util.List;
 
 import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 import com.computer.entity.Absence;
 import com.computer.entity.Response;
-import com.computer.entity.AState;
 
 @Produces("application/json")
 public interface AbsenceService {
-
-	@POST
-	@Path("queryall")
-	public Response<List<Absence>> queryAllAbsence();
+ 
 	
 	@POST
-	@Path("query")
-	public Response<Absence> queryAbsence(
-			@FormParam("id")Integer id
+	@Path("queryByUid")
+	public Response<List<Absence>> queryByUid(
+			@FormParam("uid")Integer uid
 			);
-	
+	@POST
+	@Path("queryByTid")
+	public Response<List<Absence>> queryByTid(
+			@FormParam("tid")Integer tid
+			);
 	@POST
 	@Path("upd")
-	public Response<String> updAbsence(
+	public Response<Absence> upd(
+			@FormParam("id")Integer id,
 			@FormParam("tid")Integer tid,
+			@FormParam("sdate")String sdate,
+			@FormParam("edate")String edate,
 			@FormParam("reason")String reason,
-			@FormParam("states")Integer states,
-			@FormParam("statemsg")String statemsg,
+			@FormParam("state")String state,
+			@FormParam("tmsg")String tmsg,
 			@FormParam("reserve")String reserve
 			);
-	
+	//id, uid,tid, sdate，edate ，reason,state, tmsg, reqdate reserve
 	@POST
 	@Path("del")
-	public Response<Boolean>  delAbsence(
+	public Response<Boolean>  del(
 			@FormParam("id")Integer id
 			);
 	@POST
 	@Path("add")
-	public Response<Absence>  addAbsence(
+	public Response<Absence>  add(
 			@FormParam("uid")Integer uid,
 			@FormParam("tid")Integer tid,
+			@FormParam("sdate")String sdate,
+			@FormParam("edate")String edate,
 			@FormParam("reason")String reason,
-			@FormParam("states")Integer states,
-			@FormParam("statemsg")String statemsg,
 			@FormParam("reserve")String reserve
 			);
 	 

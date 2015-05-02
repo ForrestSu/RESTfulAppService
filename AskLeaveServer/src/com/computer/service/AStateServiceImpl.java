@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import com.computer.entity.Response;
 import com.computer.entity.AState;
+import com.computer.entity.User;
 import com.computer.util.Log;
 
 @Service
@@ -14,14 +15,14 @@ public class AStateServiceImpl extends BaseService implements AStateService {
 
 	@Override
 	public Response<List<AState>> queryAllState() {
-		Response<List<AState>> resp=new Response<List<AState>>();
+		Response<List<AState>> resp = new Response<List<AState>>();
 		List<AState> mstate = (List<AState>) db.findAll(stateClass);
 		if (mstate == null) {
 			log.i("查询所有state失败");
 			resp.setDescription("服务器异常，无法新增，请稍后再试");
 			resp.setOperateResult(false);
-			 
-		}else {
+
+		} else {
 			resp.setDescription("查询所有状态成功");
 			resp.setOperateResult(true);
 			resp.setObject(mstate);
@@ -34,11 +35,11 @@ public class AStateServiceImpl extends BaseService implements AStateService {
 		Response<String> resp = new Response<String>();
 		AState mstate = (AState) db.findById(stateClass, id);
 		if (mstate == null) {
-			log.i("state表不存在id="+id);
-			resp.setDescription("state表不存在id="+id);
+			log.i("state表不存在id=" + id);
+			resp.setDescription("state表不存在id=" + id);
 			resp.setOperateResult(false);
-			 
-		}else {
+
+		} else {
 			resp.setDescription("查询一个状态成功");
 			resp.setOperateResult(true);
 			resp.setObject(mstate.getStates());
@@ -56,11 +57,12 @@ public class AStateServiceImpl extends BaseService implements AStateService {
 			resp.setOperateResult(false);
 			return resp;
 		}
-		Boolean ret=db.deleteById(stateClass, id)>0;
-		if(ret)resp.setDescription("删除"+id+"状态成功");
-		else{
+		Boolean ret = db.deleteById(stateClass, id) > 0;
+		if (ret)
+			resp.setDescription("删除" + id + "状态成功");
+		else {
 			log.i("删除状态 失败");
-			resp.setDescription("删除"+id+"状态 失败");
+			resp.setDescription("删除" + id + "状态 失败");
 		}
 		resp.setOperateResult(ret);
 		return resp;
@@ -89,6 +91,35 @@ public class AStateServiceImpl extends BaseService implements AStateService {
 			resp.setObject(mstate);
 		}
 		return resp;
+	}
+
+	@Override
+	public Response<Integer> updState(Integer id, String newstate) {
+		Response<Integer> resp = new Response<Integer>();
+		AState mstate = (AState) db.findById(stateClass, id);
+		if (mstate == null) {
+			log.i("不存在该状态");
+			resp.setOperateResult(false);
+			resp.setObject(-1);
+			resp.setDescription("不存在id=" + id + "的状态");
+			return resp;
+		}
+		mstate.setStates(newstate);
+		int updateResult = db.updateById(mstate);
+
+		if (updateResult <= 0) {
+			log.i("数据库修改失败");
+			resp.setOperateResult(false);
+			resp.setObject(updateResult);
+			resp.setDescription("服务器异常，请稍后再试");
+		} else {
+			log.i("修改成功");
+			resp.setOperateResult(true);
+			resp.setObject(updateResult);
+			resp.setDescription("修改状态成功");
+		}
+		return resp;
+
 	}
 
 }

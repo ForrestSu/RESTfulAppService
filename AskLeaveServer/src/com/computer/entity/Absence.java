@@ -16,10 +16,9 @@ import com.alibaba.fastjson.FastJsonType;
 import com.sun.xml.internal.txw2.annotation.XmlElement;
 
 /**
- * @author sq id, uid,tid, sdate，edate ，reason,states, statemsg, reqdate reserve
+ * @author sq id, uid,tid, sdate，edate ，reason,state, statemsg, reqdate reserve
  */
 @FastJsonType
-@XmlElement
 public class Absence {
 	/**
 	 * id
@@ -37,27 +36,26 @@ public class Absence {
 	/**
 	 * 请假开始时间
 	 */
-	private Date sdate;
+	private String sdate;
 	/**
 	 * 请假结束时间
 	 */
-	private Date edate;
-
+	private String edate;
 	/**
 	 * 申请时间
 	 */
-	private Date reqdate;
+	private String reqdate;
 
 	@ColDefine(type = ColType.TEXT)
 	private String reason;
 
-	private Integer states;
+	private String state;
 
 	/**
 	 * 批准状态
 	 */
 	@ColDefine(type = ColType.TEXT)
-	private String statemsg;
+	private String tmsg;
 	/**
 	 * 保留字段
 	 */
@@ -87,27 +85,27 @@ public class Absence {
 		this.tid = tid;
 	}
 
-	public Date getSdate() {
+	public String getSdate() {
 		return sdate;
 	}
 
-	public void setSdate(Date sdate) {
+	public void setSdate(String sdate) {
 		this.sdate = sdate;
 	}
 
-	public Date getEdate() {
+	public String getEdate() {
 		return edate;
 	}
 
-	public void setEdate(Date edate) {
+	public void setEdate(String edate) {
 		this.edate = edate;
 	}
 
-	public Date getReqdate() {
+	public String getReqdate() {
 		return reqdate;
 	}
 
-	public void setReqdate(Date reqdate) {
+	public void setReqdate(String reqdate) {
 		this.reqdate = reqdate;
 	}
 
@@ -119,20 +117,22 @@ public class Absence {
 		this.reason = reason;
 	}
 
-	public Integer getStates() {
-		return states;
+	public String getState() {
+		return state;
 	}
 
-	public void setStates(Integer states) {
-		this.states = states;
+	public void setState(String state) {
+		this.state = state;
 	}
 
-	public String getStatemsg() {
-		return statemsg;
+	 
+
+	public String getTmsg() {
+		return tmsg;
 	}
 
-	public void setStatemsg(String statemsg) {
-		this.statemsg = statemsg;
+	public void setTmsg(String tmsg) {
+		this.tmsg = tmsg;
 	}
 
 	public String getReserve() {
@@ -142,9 +142,9 @@ public class Absence {
 	public void setReserve(String reserve) {
 		this.reserve = reserve;
 	}
-
-	public Absence(Integer uid, Integer tid, Date sdate, Date edate,
-			Date reqdate, String reason, Integer states, String statemsg,
+ 
+	public Absence(Integer uid, Integer tid, String sdate, String edate,
+			String reqdate, String reason, String state, String tmsg,
 			String reserve) {
 		super();
 		this.uid = uid;
@@ -153,8 +153,8 @@ public class Absence {
 		this.edate = edate;
 		this.reqdate = reqdate;
 		this.reason = reason;
-		this.states = states;
-		this.statemsg = statemsg;
+		this.state = state;
+		this.tmsg = tmsg;
 		this.reserve = reserve;
 	}
 

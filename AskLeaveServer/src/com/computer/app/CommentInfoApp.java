@@ -7,7 +7,7 @@
 package com.computer.app;
 
 import com.computer.db.DBTools;
-import com.computer.entity.CommentInfo;
+import com.computer.entity.User;
 
 /**
  * @author tanqidong
@@ -20,9 +20,9 @@ public class CommentInfoApp extends BaseApp{
 	 * 
 	 */
 	
-	public CommentInfo addComment(CommentInfo ci)
+	public User addComment(User ci)
 	{
-		return	  (CommentInfo) db.insert(ci);
+		return	  (User) db.insert(ci);
 	}
 	
 

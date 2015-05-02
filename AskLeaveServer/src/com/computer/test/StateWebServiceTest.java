@@ -11,17 +11,17 @@ import com.computer.net.Client;
 
 public class StateWebServiceTest {
 	
-	static String url="http://localhost:8080/AskLeaveServer/state/";
+	static String url="http://127.0.0.1:8080/AskLeaveServer/state/";
 	public static void main(String[] args) throws ClientProtocolException, IOException {
-//		testAddState();
-		testAddState();
+		//testAddState();
+		queryAllState();
 	}
 	//ok
 	public static void testAddState() throws ClientProtocolException, IOException
 	{
 		Map<String, String> params=new HashMap<String, String>();
-		params.put("states", "驳回");
-		String ss=Client.sendPost(url+"addstate", params);
+		params.put("states", "未审核");
+		String ss=Client.sendPost(url+"add", params);
 		System.out.println(ss);
 	}
 	
@@ -30,7 +30,7 @@ public class StateWebServiceTest {
 	{
 		Map<String, String> params=new HashMap<String, String>();
 		params.put("id", "5");
-		String ss=Client.sendPost(url+"delstate", params);
+		String ss=Client.sendPost(url+"del", params);
 		System.out.println(ss);
 	}
 	//ok
@@ -38,16 +38,25 @@ public class StateWebServiceTest {
 	{
 		Map<String, String> params=new HashMap<String, String>();
 		params.put("id", "1");
-		String ss=Client.sendPost(url+"querystate", params);
+		String ss=Client.sendPost(url+"query", params);
 		System.out.println(ss);
 	}
-	
+	//ok
 	public static void queryAllState() throws ClientProtocolException, IOException
 	{
 		Map<String, String> params=new HashMap<String, String>();
 //		params.put("name", "sunquan");
-		String ss=Client.sendPost(url+"queryallstate", params);
+		String ss=Client.sendPost(url+"queryall", params);
 		System.out.println(ss);
 	}
-
+	//ok
+	public static void testupdState() throws ClientProtocolException, IOException
+	{
+		Map<String, String> params=new HashMap<String, String>();
+ 		params.put("id", "5");
+ 		params.put("states", "状态**-");
+		String ss=Client.sendPost(url+"upd", params);
+		System.out.println(ss);
+	}
+	
 }

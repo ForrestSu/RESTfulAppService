@@ -7,29 +7,40 @@ import java.util.Map;
 import org.apache.http.client.ClientProtocolException;
  
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.computer.entity.Response;
+import com.computer.entity.User;
 import com.computer.net.Client;
+import com.google.gson.JsonObject;
 
 public class WebServiceTest {
 	
-	static String url="http://172.28.27.26:8088/AskLeaveServer/user/";
+	static String url="http://127.0.0.1:8080/AskLeaveServer/user/";
 	public static void main(String[] args) throws ClientProtocolException, IOException {
-		 TestRegister();
-		//  testlogin();
+//		 TestRegister();
+//	  testlogin();
+		testFindUserByType(); 
 	}
 	
 	public static void testlogin() throws ClientProtocolException, IOException 
 	{
 		Map<String, String> params=new HashMap<String, String>();
-		params.put("name", "12");
+		params.put("name", "sunquan");
 	 	params.put("password", "123456");
 	 	params.put("userType", "0");
 		String ss=Client.sendPost(url+"login", params);
 		System.out.println(ss);
+		Response resp=JSONObject.parseObject(ss,Response.class);
+		User  one=JSONObject.toJavaObject((JSONObject)resp.getObject(), User.class);
+		System.out.println(one.toString());
+		
+		
 	}
 	public static void TestRegister() throws ClientProtocolException, IOException 
 	{
 		Map<String, String> params=new HashMap<String, String>();
-		params.put("name", "sunquan");
+		params.put("name", "test");
 	 	params.put("password", "123456");
 	 	params.put("userType", "0");
 	 	params.put("stunumber", "201141842121");
@@ -47,5 +58,23 @@ public class WebServiceTest {
 		String ss=Client.sendGet(url+"isExistUserName", params);
 		System.out.println(ss);
 	}
-
+	
+	
+	public static void testFindUserByType() throws ClientProtocolException, IOException
+	{
+		Map<String, String> params=new HashMap<String, String>();
+		params.put("userType", "1");
+		String ss=Client.sendPost(url+"findByType", params);
+		System.out.println(ss);
+	}
+	
+	public static void TestUpdatePasswd() throws ClientProtocolException, IOException
+	{
+		Map<String, String> params=new HashMap<String, String>();
+		params.put("id", "1");
+ 		params.put("password", "09999");
+ 		params.put("oldPassword", "123456");
+		String ss=Client.sendPost(url+"updatePassword", params);
+		System.out.println(ss);
+	}
 }

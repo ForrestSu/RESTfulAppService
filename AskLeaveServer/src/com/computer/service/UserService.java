@@ -1,5 +1,7 @@
 package com.computer.service;
 
+import java.util.List;
+
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -28,7 +30,7 @@ public interface UserService {
 	public Response<User>  login(
 			@FormParam("name")String name,
 			@FormParam("password")String password,
-			@FormParam("userType")int userType);
+			@FormParam("userType")Integer userType);
 	@POST
 	@Path("register")
 	public Response<User>  register(
@@ -40,5 +42,9 @@ public interface UserService {
 			@FormParam("sex")String sex,
 			@FormParam("reserve")String reserve
 			);
-	
+	@POST
+	@Path("findByType")
+	public Response<List<User>> findByType(
+			@FormParam("userType")Integer userType 
+			);
 }

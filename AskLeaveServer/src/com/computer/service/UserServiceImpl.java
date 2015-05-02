@@ -1,5 +1,7 @@
 package com.computer.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import com.computer.entity.Response;
 import com.computer.entity.User;
@@ -40,7 +42,7 @@ public class UserServiceImpl extends BaseService implements UserService {
 		 {
 			 user.setPassword(password);
 			 
-			int updateResult= db.update(user);
+			int updateResult= db.updateById(user);
 			
 			if(updateResult<=0)
 			{
@@ -82,7 +84,7 @@ public class UserServiceImpl extends BaseService implements UserService {
 	}
 
 	@Override
-	public Response<User> login(String name, String password, int userType) {
+	public Response<User> login(String name, String password, Integer userType) {
 		// TODO Auto-generated method stub
 		
 		Response<User> resp=new Response<User>();
@@ -139,6 +141,27 @@ public class UserServiceImpl extends BaseService implements UserService {
 			 resp.setDescription("注册成功");
 			resp.setOperateResult(true);
 			 resp.setObject(user);
+		 }
+		return resp;
+	}
+
+	@Override
+	public Response<List<User>> findByType(Integer userType) {
+		Response<List<User>> resp=new Response<List<User>>();
+		User user=new User();
+		user.setUserType(userType);
+		List<User> list=(List<User>)db.findObjects(user, null); 
+		 if(list==null)
+		 {
+			 log.i("按类型查询用户记录0条！");
+			 resp.setDescription("没有查到userType="+userType+"记录");
+			 resp.setOperateResult(false);
+		 }
+		 else
+		 { 
+			 resp.setDescription("查询该类型用户记录");
+			 resp.setOperateResult(true);
+			 resp.setObject(list);
 		 }
 		return resp;
 	}

@@ -21,11 +21,14 @@ import java.util.Properties;
 public class PropertyUtils {
 
 	private static Log log=Log.getLog(PropertyUtils.class);
-	private static final String defaultPath= PropertyUtils.class.getResource("/").getPath().substring(1)+"db.properties";
+	private static String defaultPath= PropertyUtils.class.getResource("/").getPath().substring(1)+"db.properties";
 	
 	static
 	{
-		
+		if(System.getProperties().getProperty("os.name").startsWith("Linux"))
+		{
+			defaultPath="/etc/tomcat7/db.properties";
+		}
 		File file=new File(defaultPath);
 		//System.out.println(file.getAbsolutePath());
 		try {
