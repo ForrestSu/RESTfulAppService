@@ -1,4 +1,4 @@
-# RESTfulAppService
+﻿# RESTfulAppService
 This program based on RESTful Architecture ,It can provides data services to the android or IOS app. 
 
 #How to use
@@ -40,7 +40,7 @@ eg:``http://localhost:8088/AskLeaveServer/user/isExistUserName?name=sunquan``
     User user=JSONObject.toJavaObject((JSONObject)resp.getObject(),User.class);
 ```
 #DB Graph
-![image](https://github.com/ForrestSu/RESTfulAppService/blob/master/docs/graph.png)
+![image](https://github.com/ForrestSu/RESTfulAppService/blob/master/docs/er.png)
 #Author 
  Quan Sun,Qidong Tan
 
