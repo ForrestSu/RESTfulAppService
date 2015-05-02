@@ -39,7 +39,8 @@ eg:``http://localhost:8088/AskLeaveServer/user/isExistUserName?name=sunquan``
     Response  resp =JSONObject.parseObject(ss,Response.class);
     User user=JSONObject.toJavaObject((JSONObject)resp.getObject(),User.class);
 ```
-
+#DB Graph
+![image](https://github.com/ForrestSu/RESTfulAppService/blob/master/docs/graph.png)
 #Author 
  Quan Sun,Qidong Tan
 
