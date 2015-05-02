@@ -40,7 +40,7 @@ eg:``http://localhost:8088/AskLeaveServer/user/isExistUserName?name=sunquan``
     User user=JSONObject.toJavaObject((JSONObject)resp.getObject(),User.class);
 ```
 #DB Graph
-![image](https://github.com/ForrestSu/RESTfulAppService/blob/master/docs/er.png)
+![image](https://github.com/ForrestSu/RESTfulAppService/blob/master/docs/er.png)<br>
 注：虚线箭头最后实现
 #Author 
  Quan Sun,Qidong Tan
