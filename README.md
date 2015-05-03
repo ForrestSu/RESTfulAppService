@@ -38,6 +38,9 @@ eg:``http://localhost:8088/AskLeaveServer/user/isExistUserName?name=sunquan``
 ```Java
     Response  resp =JSONObject.parseObject(ss,Response.class);
     User user=JSONObject.toJavaObject((JSONObject)resp.getObject(),User.class);
+    // 如果返回的对象不止一个
+    Response  resp =JSONObject.parseObject(ss,Response.class);
+    List<User> list=JSONArray.parseArray(resp.getObject().toString(), User.class);
 ```
 #DB Graph
 ![image](https://github.com/ForrestSu/RESTfulAppService/blob/master/docs/er.png)<br>
