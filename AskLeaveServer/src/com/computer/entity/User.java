@@ -10,7 +10,6 @@ import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.Name;
 
 import com.alibaba.fastjson.FastJsonType;
-import com.sun.xml.internal.txw2.annotation.XmlElement;
 
 /**
  * @author  
@@ -43,6 +42,15 @@ public class User {
 	 * 性别
 	 */
 	private String sex;
+	/**
+	 * 注册时间
+	 */
+	private String regdate;
+	
+	/**
+	 * 是否注销
+	 */
+	private int  valid;
 	/**
 	 *  保留
 	 */
@@ -89,6 +97,20 @@ public class User {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
+	
+	public String getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
+	
+	public int getValid() {
+		return valid;
+	}
+	public void setValid(int valid) {
+		this.valid = valid;
+	}
 	public String getReserve() {
 		return reserve;
 	}
@@ -96,8 +118,11 @@ public class User {
 		this.reserve = reserve;
 	}
 	public User(){};//空的构造方法
-	public User( String userName, String password, Integer userType,
-			String stunumber, String tel, String sex, String reserve) {
+	 
+	
+	public User(String userName, String password, Integer userType,
+			String stunumber, String tel, String sex, String regdate,Integer valid,
+			String reserve) {
 		super();
 		this.userName = userName;
 		this.password = password;
@@ -105,9 +130,10 @@ public class User {
 		this.stunumber = stunumber;
 		this.tel = tel;
 		this.sex = sex;
+		this.regdate = regdate;
+		this.valid=valid;
 		this.reserve = reserve;
 	}
-	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

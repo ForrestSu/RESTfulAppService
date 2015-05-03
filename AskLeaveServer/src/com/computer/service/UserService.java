@@ -47,4 +47,9 @@ public interface UserService {
 	public Response<List<User>> findByType(
 			@FormParam("userType")Integer userType 
 			);
+	@GET
+	@Path("del")
+	public Response<Boolean> del(
+			@FormParam("id")Integer id 
+			);
 }

@@ -10,39 +10,40 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
  
 public class DateUtil {
 	private static final Log log = Log.getLog(DateUtil.class);
 			 
-	
-	public static Date strCSTToDate(String dateInString,String inFormat){
+	/**
+	 * @param 获得服务器当前日期 yyyy-MM-dd (HH:mm:ss.SSS)
+	 * @return String 日期
+	 */
+	public static String getCurrentDate(String dateformat){
+		// TimeZone.setDefault(TimeZone.getTimeZone("GMT+8")); 东八区
+		Date date = Calendar.getInstance().getTime();
+		return  new SimpleDateFormat(dateformat).format(date);// 获取服务器当前日期
+	}
+	public static Date strCSTToDate(String inDateStr,String inFormat){
 		SimpleDateFormat sdf=new SimpleDateFormat(inFormat,Locale.US);
-		
 		Date date=null;
 		try {
-			date = (Date) sdf.parse(dateInString);
+			date = (Date) sdf.parse(inDateStr);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			log.error("strCSTToFate Error! "+e.getMessage());
+			log.error("strCSTToDate Error! "+e.getMessage());
 		}
-		
-		
 		return date;
 	}
 	
-	public static String strCSTTostrDate(String dateInString,String inFormat,String outFormat){
-		SimpleDateFormat sdf=new SimpleDateFormat(inFormat,Locale.US);
-		
+	public static String ConvertDateFormat(String inDateStr,String inFormat,String outFormat){
+		DateFormat sdf=new SimpleDateFormat(inFormat,Locale.US);
 		Date date=null;
 		try {
-			date = (Date) sdf.parse(dateInString);
+			date = (Date) sdf.parse(inDateStr);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			log.error("strCSTToFate Error! "+e.getMessage());
+			log.error("strCSTToDate Error! "+e.getMessage());
 		}
-		if(date==null)
-			return null;
-		
+		if(date==null) return null;
 		return new SimpleDateFormat(outFormat).format(date);
 	}
 	
@@ -173,33 +174,22 @@ public class DateUtil {
 	        return new Timestamp(calendar.getTimeInMillis());
 	    }
 	    
-		/**
-		 * 计算两个日期之间相差的天数
-		 * @param costTime
-		 * @param receivableTime
-		 * @return
+	    /**
+		 * @param smdate Date   
+		 * @param edate Date   
+		 * @return 获取两个日期之间相差天数
 		 */
-		public static int getDays(Date end,Date start){
-			Calendar aCalendar = Calendar.getInstance();
-	        Calendar bCalendar = Calendar.getInstance();
-	        aCalendar.setTime(end);
-	        bCalendar.setTime(start);
-	        int days = 0;
-	        while(aCalendar.before(bCalendar)){
-	            days++;
-	            aCalendar.add(Calendar.DAY_OF_YEAR, 1);
-	        }
-	        
-	        if(days==0){
-	        	aCalendar.setTime(start);
-	            bCalendar.setTime(end);
-	            while(aCalendar.before(bCalendar)){
-	                days++;
-	                aCalendar.add(Calendar.DAY_OF_YEAR, 1);
-	            }
-	        }
-	        return days;
-		}
+		public static int daysBetween(Date smdate,Date edate) 
+	    {    
+	        Calendar cal = Calendar.getInstance();    
+	        cal.setTime(smdate);    
+	        long time1 = cal.getTimeInMillis();                 
+	        cal.setTime(edate);    
+	        long time2 = cal.getTimeInMillis();         
+	        long between_days=(time2-time1)/(1000*3600*24); 
+	        if (between_days<0)between_days=-between_days;
+	        return Integer.parseInt(String.valueOf(between_days));           
+	    }  
 		
 		/**
 		 * 计算两个月份之间相差的月份数

@@ -17,9 +17,9 @@ public class AbsenceWebServiceTest {
 			IOException {
 //		queryByUid();
 //		queryByTid();
-//		del();
-//		addAbsence();
-		updAbsence();
+	// del();
+			addAbsence();
+			//	  updAbsence();
 	}
 
 	//ok
@@ -28,8 +28,8 @@ public class AbsenceWebServiceTest {
 		params.put("uid", "1");
 		params.put("tid", "3");
 		params.put("sdate", "2015-05-16");
-		params.put("edate", "2015-05-17");
-		params.put("reason", "test");
+		params.put("edate", "2015-05-16");
+		params.put("reason", "我要快乐--");
 		params.put("reserve", "");
 		String ss = Client.sendPost(url + "add", params);
 		System.out.println(ss);
@@ -38,11 +38,11 @@ public class AbsenceWebServiceTest {
 	//
 	public static void updAbsence() throws ClientProtocolException, IOException {
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("id", "5");
+		params.put("id", "3");
 		params.put("uid", "2");
 		params.put("tid", "4");
 		params.put("sdate", "2015-05-16");
-		params.put("edate", "2015-05-17");
+		params.put("edate", "2015-05-13");
 		params.put("reason", "travel");
 		params.put("state", State.states[3]);
 		params.put("tmsg", "i am a teacher");
@@ -69,7 +69,7 @@ public class AbsenceWebServiceTest {
 	// ok
 	public static void del() throws ClientProtocolException, IOException {
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("id", "4");
+		params.put("id", "5");
 		String ss = Client.sendPost(url + "del", params);
 		System.out.println(ss);
 	}

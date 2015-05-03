@@ -8,13 +8,15 @@ import org.apache.http.client.ClientProtocolException;
  
 
 import com.computer.net.Client;
+import com.computer.util.SqTools;
 
 public class StateWebServiceTest {
 	
 	static String url="http://127.0.0.1:8080/AskLeaveServer/state/";
 	public static void main(String[] args) throws ClientProtocolException, IOException {
 		//testAddState();
-		queryAllState();
+		//queryAllState();
+		System.out.println(SqTools.matchPhoneNumber(""));
 	}
 	//ok
 	public static void testAddState() throws ClientProtocolException, IOException

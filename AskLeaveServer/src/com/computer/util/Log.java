@@ -35,12 +35,9 @@ public class Log {
 	public static Log getLog(Class<?> cls)
 	{
 		return new Log(cls.getSimpleName());
-		
 	}
 
 	public void error(String string) {
-		// TODO Auto-generated method stub
-		
 		i(string);
 		
 	}

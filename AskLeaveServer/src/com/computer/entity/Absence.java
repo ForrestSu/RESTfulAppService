@@ -6,14 +6,12 @@
  */
 package com.computer.entity;
 
-import java.sql.Date;
 
 import org.nutz.dao.entity.annotation.ColDefine;
 import org.nutz.dao.entity.annotation.ColType;
 import org.nutz.dao.entity.annotation.Id;
 
 import com.alibaba.fastjson.FastJsonType;
-import com.sun.xml.internal.txw2.annotation.XmlElement;
 
 /**
  * @author sq id, uid,tid, sdate，edate ，reason,state, statemsg, reqdate reserve

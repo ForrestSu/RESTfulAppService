@@ -18,9 +18,9 @@ public class WebServiceTest {
 	
 	static String url="http://127.0.0.1:8080/AskLeaveServer/user/";
 	public static void main(String[] args) throws ClientProtocolException, IOException {
-//		 TestRegister();
+		// 	 TestRegister();
 //	  testlogin();
-		testFindUserByType(); 
+		TestUpdatePasswd(); 
 	}
 	
 	public static void testlogin() throws ClientProtocolException, IOException 
@@ -31,17 +31,15 @@ public class WebServiceTest {
 	 	params.put("userType", "0");
 		String ss=Client.sendPost(url+"login", params);
 		System.out.println(ss);
-		Response resp=JSONObject.parseObject(ss,Response.class);
-		User  one=JSONObject.toJavaObject((JSONObject)resp.getObject(), User.class);
-		System.out.println(one.toString());
-		
-		
+//		Response resp=JSONObject.parseObject(ss,Response.class);
+//		User  one=JSONObject.toJavaObject((JSONObject)resp.getObject(), User.class);
+//		System.out.println(one.toString());
 	}
 	public static void TestRegister() throws ClientProtocolException, IOException 
 	{
 		Map<String, String> params=new HashMap<String, String>();
-		params.put("name", "test");
-	 	params.put("password", "123456");
+		params.put("name", "孙权孙权");
+	 	params.put("password", "1243");
 	 	params.put("userType", "0");
 	 	params.put("stunumber", "201141842121");
 	 	params.put("tel", "18207302292");
@@ -58,7 +56,13 @@ public class WebServiceTest {
 		String ss=Client.sendGet(url+"isExistUserName", params);
 		System.out.println(ss);
 	}
-	
+	public static void TestDel() throws ClientProtocolException, IOException
+	{
+		Map<String, String> params=new HashMap<String, String>();
+		params.put("id", "4");
+		String ss=Client.sendGet(url+"del", params);
+		System.out.println(ss);
+	}
 	
 	public static void testFindUserByType() throws ClientProtocolException, IOException
 	{
@@ -72,8 +76,8 @@ public class WebServiceTest {
 	{
 		Map<String, String> params=new HashMap<String, String>();
 		params.put("id", "1");
- 		params.put("password", "09999");
- 		params.put("oldPassword", "123456");
+ 		params.put("password", "12345");
+ 		params.put("oldPassword", "09999");
 		String ss=Client.sendPost(url+"updatePassword", params);
 		System.out.println(ss);
 	}

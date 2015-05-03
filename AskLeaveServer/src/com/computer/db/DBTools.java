@@ -102,7 +102,7 @@ public class DBTools<T> {
 				e.printStackTrace();
 			}
 			if (fieldValue != null) {
-				con.and(fieldName, (null==operations || operations.get(fieldName) == null)? "=": operations.get(fieldName), fieldValue);
+				con.and(fieldName, (null==operations || null==operations.get(fieldName))? "=": operations.get(fieldName), fieldValue);
 			}
 		}
 		con.asc("id");//默认按照id 排序
@@ -118,10 +118,13 @@ public class DBTools<T> {
 
 	public T findByName(Class<T> cls, String name) {
 		log.i("findById in table " + cls.getSimpleName() + " with name " + name);
-
 		T object = mNutDao.fetch(cls, name);
-
 		return object;
+	}
+	public T findObject(T o, Map<String, String> operations){
+		List<T>list=findObjects(o,operations);
+		if(list==null|| list.size()==0) return null;
+		else return list.get(0);
 	}
 
 	public int updateById(T object) {
