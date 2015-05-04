@@ -2,27 +2,38 @@ package com.computer.test;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.http.client.ClientProtocolException;
  
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.computer.entity.Response;
 import com.computer.entity.User;
 import com.computer.net.Client;
-import com.google.gson.JsonObject;
 
 public class WebServiceTest {
 	
-	static String url="http://127.0.0.1:8080/AskLeaveServer/user/";
+	static String url="http://172.28.27.26:8088/AskLeaveServer/user/";
 	public static void main(String[] args) throws ClientProtocolException, IOException {
 		// 	 TestRegister();
 //	  testlogin();
-		TestUpdatePasswd(); 
+		TestqueryByUserType();
 	}
 	
+	private static void TestqueryByUserType() throws ClientProtocolException, IOException {
+		Map<String, String> params=new HashMap<String, String>();
+ 		params.put("userType", "1");
+		String ss=Client.sendPost(url+"findByType", params);
+		System.out.println(ss);
+		Response  resp =JSONObject.parseObject(ss,Response.class);
+	    List<User> list=JSONArray.parseArray(resp.getObject().toString(), User.class);
+	      
+	     System.out.println(list.size());
+	}
+
 	public static void testlogin() throws ClientProtocolException, IOException 
 	{
 		Map<String, String> params=new HashMap<String, String>();
@@ -81,4 +92,6 @@ public class WebServiceTest {
 		String ss=Client.sendPost(url+"updatePassword", params);
 		System.out.println(ss);
 	}
+	
+	
 }
