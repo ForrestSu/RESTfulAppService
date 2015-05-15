@@ -40,17 +40,21 @@ public class Absence {
 	 */
 	private String edate;
 	/**
-	 * 申请时间
+	 * 请假申请时间
 	 */
 	private String reqdate;
-
+       /**
+	 * 请假理由
+	 */
 	@ColDefine(type = ColType.TEXT)
 	private String reason;
-
+       /**
+	 * 请假状态
+	 */
 	private String state;
 
 	/**
-	 * 批准状态
+	 * 老师审核意见
 	 */
 	@ColDefine(type = ColType.TEXT)
 	private String tmsg;
