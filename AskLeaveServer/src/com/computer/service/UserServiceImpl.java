@@ -97,6 +97,7 @@ public class UserServiceImpl extends BaseService implements UserService {
 		Response<User> resp=new Response<User>();
 		User user=new User();
 		user.setUserName(name);
+		user.setUserType(userType);
 		user.setValid(0);
 		user=(User) db.findObject(user, null);
 		if(user==null)
