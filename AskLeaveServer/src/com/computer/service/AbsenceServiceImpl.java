@@ -149,7 +149,14 @@ public class AbsenceServiceImpl extends BaseService implements AbsenceService {
 		user.setUserType(0);
 		if(db.findObject(user, null)==null)
 		{
-			resp.setDescription("当前用户id不存在,且老师不能申请请假");
+			resp.setDescription("id="+uid+"的学生不存在,且老师不能请假");
+			return resp;
+	    }
+		user.setId(tid);
+		user.setUserType(1);
+		if(db.findObject(user, null)==null)
+		{
+			resp.setDescription("id="+tid+"的老师不存在");
 			return resp;
 	    }
 		if(sdate==null||sdate.length()<4||edate==null||edate.length()<4)

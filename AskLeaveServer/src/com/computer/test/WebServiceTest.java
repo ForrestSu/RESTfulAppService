@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.http.client.ClientProtocolException;
- 
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.computer.entity.Response;
 import com.computer.entity.User;
 import com.computer.net.Client;
+
 
 public class WebServiceTest {
 	
@@ -28,10 +28,10 @@ public class WebServiceTest {
  		params.put("userType", "1");
 		String ss=Client.sendPost(url+"findByType", params);
 		System.out.println(ss);
-		Response  resp =JSONObject.parseObject(ss,Response.class);
-	    List<User> list=JSONArray.parseArray(resp.getObject().toString(), User.class);
+	//	Response  resp =JSONObject.parseObject(ss,Response.class);
+	 //   List<User> list=JSONArray.parseArray(resp.getObject().toString(), User.class);
 	      
-	     System.out.println(list.size());
+	  //   System.out.println(list.size());
 	}
 
 	public static void testlogin() throws ClientProtocolException, IOException 

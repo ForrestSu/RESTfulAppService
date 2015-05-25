@@ -11,14 +11,14 @@ import com.computer.net.Client;
 
 public class AbsenceWebServiceTest {
 
-	static String url = "http://127.0.0.1:8080/AskLeaveServer/absence/";
-
+	static String url = "http://172.28.27.26:8088/AskLeaveServer/absence/";
+	 
 	public static void main(String[] args) throws ClientProtocolException,
 			IOException {
 //		queryByUid();
 //		queryByTid();
-	// del();
-			addAbsence();
+	 del();
+	 //	addAbsence();
 			//	  updAbsence();
 	}
 
@@ -69,7 +69,7 @@ public class AbsenceWebServiceTest {
 	// ok
 	public static void del() throws ClientProtocolException, IOException {
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("id", "5");
+		params.put("id", "1");
 		String ss = Client.sendPost(url + "del", params);
 		System.out.println(ss);
 	}
