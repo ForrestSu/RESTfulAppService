@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:paddingLeft="10dip"
+        android:text="请假"
+        android:textColor="#4F4F2F"
+        android:textSize="32dip" />
+
+    <EditText
+        android:id="@+id/qj_reason"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dip"
+        android:hint="请假理由" />
+
+   <!--  <Spinner
+            android:id="@+id/qj_teacher"
+            style="@android:attr/spinnerDropDownItemStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+          
+            android:layout_marginTop="5dp" /> -->
+    <EditText
+        android:id="@+id/sq_sdate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dip"
+        android:hint="开始日期" />
+
+    <EditText
+        android:id="@+id/sq_edate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dip"
+        android:hint="结束日期" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/qj_sumbit"
+            android:layout_width="0dip"
+            android:layout_height="50dip"
+            android:layout_margin="4dip"
+            android:layout_marginTop="40dip"
+            android:layout_weight="1"
+            android:background="#C0D9D9"
+            android:dividerHeight="2.0dip"
+            android:text="确认"
+            android:textColor="#4F4F2F" />
+
+        <Button
+            android:id="@+id/qj_cancel"
+            android:layout_width="0dip"
+            android:layout_height="50dip"
+            android:layout_margin="4dip"
+            android:layout_marginTop="40dip"
+            android:layout_weight="1"
+            android:background="#C0D9D9"
+            android:dividerHeight="2.0dip"
+            android:text="取消"
+            android:textColor="#4F4F2F" />
+    </LinearLayout>
+
+</LinearLayout>
